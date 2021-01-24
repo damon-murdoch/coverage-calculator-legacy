@@ -278,12 +278,338 @@ function set_sprite(id)
 	return false;
 }
 
-// function get_combo_coverage(types: list): object
+// function get_ability(damage: int, index: int, ability: string): int
+// Returns the damage taken for a given current damage stat (damage), 
+// a type index (index), and an ability (ability). 
+function get_ability(damage,index,ability)
+{
+	// 0: normal
+	// 1: weak
+	// 2: resist
+	// 3: immune
+
+	// Switch on type
+	switch(index)
+	{						
+		// Electric Type
+		case 3:
+			
+			// Switch on ability
+			switch(ability)
+			{
+				// Motor Drive Grants Lightning Immunity
+				case 'Motor Drive':
+				
+					// Set damage to 3 (immune)
+					damage = 3;
+				
+				break;
+				
+				// Volt Absorb grants Lightning Immunity
+				case 'Volt Absorb':
+				
+					// Set damage to 3 (immune)
+					damage = 3;
+				
+				break;
+				
+				// Lightning Rod Grants Lightning Immunity
+				case 'Lightning Rod':
+				
+					// Set damage to 3 (immune)
+					damage = 3;
+				
+				break;
+			}
+			
+		break;
+		
+		// Fire Type
+		case 6:
+		
+			// Switch on ability
+			switch(ability)
+			{
+				// Fluffy adds fire weakness
+				case 'Fluffy':
+				
+					// Switch on damage dealt
+					switch(damage)
+					{
+						// If the attack is currently neutral
+						case 0:
+						
+							// Set it to super-effective
+							damage = 1;
+						
+						break;
+						
+						// If the attack is currently super-effective
+						case 1:
+						
+							// Set it to 4x effective
+							// damage = ???
+						
+						break;
+						
+						// If the attack is currently resisted
+						case 2:
+						
+							// Set it to neutral
+							damage = 0;
+							
+						break;
+					}
+				
+				break;
+				
+				// Dry Skin adds fire weakness
+				case 'Dry Skin':
+				
+					// Switch on damage dealt
+					switch(damage)
+					{
+						// If the attack is currently neutral
+						case 0:
+						
+							// Set it to super-effective
+							damage = 1;
+										
+						break;
+										
+						// If the attack is currently super-effective
+						case 1:
+										
+							// Set it to 4x effective
+							// damage = ???
+										
+						break;
+										
+						// If the attack is currently resisted
+						case 2:
+										
+							// Set it to neutral
+							damage = 0;
+											
+						break;
+					}
+					
+				break;
+								
+				// Flash Fire grants fire immunity
+				case 'Flash Fire':
+								
+					// Set damage to 3 (immune)
+					damage = 3;
+								
+				break;
+								
+				// Grants additional fire resist
+				case 'Heatproof':
+								
+					// Switch on damage dealt
+					switch(damage)
+					{
+						// If the attack is currently neutral
+						case 0:
+										
+							// Set it to resisted
+							damage = 2;
+										
+						break;
+										
+						// If the attack is currently super-effective
+						case 1:
+										
+							// Set it to neutral
+							damage = 0;
+										
+						break;
+										
+						// If the attack is currently resisted
+						case 2:
+										
+							// Set it to 4x resisted
+							// damage = 0;
+											
+						break;
+					}
+								
+				break;
+								
+				// Grants additional fire resist
+				case 'Water Bubble':
+								
+					// Switch on damage dealt
+					switch(damage)
+					{
+						// If the attack is currently neutral
+						case 0:
+										
+							// Set it to resisted
+							damage = 2;
+										
+						break;
+										
+						// If the attack is currently super-effective
+						case 1:
+										
+							// Set it to neutral
+							damage = 0;
+										
+						break;
+										
+						// If the attack is currently resisted
+						case 2:
+										
+							// Set it to 4x resisted
+							// damage = 0;
+											
+						break;
+					}
+								
+				break;
+								
+				// Grants additional fire resist
+				case 'Thick Fat':
+								
+					// Switch on damage dealt
+					switch(damage)
+					{
+						// If the attack is currently neutral
+						case 0:
+										
+							// Set it to resisted
+							damage = 2;
+										
+						break;
+										
+						// If the attack is currently super-effective
+						case 1:
+										
+							// Set it to neutral
+							damage = 0;
+										
+						break;
+										
+						// If the attack is currently resisted
+						case 2:
+									
+							// Set it to 4x resisted
+							// damage = 0;
+											
+						break;
+					}
+						
+				break;
+			}
+						
+		break;
+						
+		// Grass Type
+		case 9:
+		
+			// Switch on ability
+			switch(ability)
+			{
+				// Sap Sipper - Grants immunity to grass moves
+				case 'Sap Sipper':
+				
+					// Set damage to 3 (immune)
+					damage = 3;
+				
+				break;
+			}
+					
+		break;
+						
+		// Ground Type
+		case 10:
+		
+			// Switch on ability
+			switch(ability)
+			{
+				// Levitate - Grants immunity to ground moves
+				case 'Levitate':
+				
+					// Set damage to 3 (immune)
+					damage = 3;
+				
+				break;
+			}
+						
+		break;
+						
+		// Ice Type
+		case 11:
+		
+			// Switch on ability
+			switch(ability)
+			{
+				// Grants additional ice resist
+				case 'Thick Fat':
+								
+					// Switch on damage dealt
+					switch(damage)
+					{
+						// If the attack is currently neutral
+						case 0:
+										
+							// Set it to resisted
+							damage = 2;
+										
+						break;
+										
+						// If the attack is currently super-effective
+						case 1:
+										
+							// Set it to neutral
+							damage = 0;
+										
+						break;
+										
+						// If the attack is currently resisted
+						case 2:
+									
+							// Set it to 4x resisted
+							// damage = 0;
+											
+						break;
+					}
+						
+				break;
+			}
+						
+		break;
+						
+		// Water Type
+		case 17:
+		
+			// Switch on ability
+			switch(ability)
+			{
+				// Water Absorb - Grants immunity to water moves
+				case 'Water Absorb':
+				
+					// Set damage to 3 (immune)
+					damage = 3;
+				
+				break;
+			}
+						
+		break;
+	}
+	
+	// Return the new damage value to the calling process
+	return damage;
+}
+
+// function get_coverage(types: list): object
 // Given a list object containing two or less types,
 // calculates the weaknesses and resistances of the 
 // type or type combination.
 // 0: immune, 1: 4x resist, 2: resist, 3: neutral, 4: weak, 5: 4x weak
-function get_coverage(types)
+function get_coverage(types, ability = null)
 {
 	// Generate a map for the combo coverage
 	
@@ -321,7 +647,14 @@ function get_coverage(types)
 						
 				// Dereference the type of damage taken from the target
 				damage = target.damageTaken[source];
-						
+				
+				// If an ability is provided
+				if(ability)
+				{
+					// Get the new damage, as modified by the ability
+					damage = get_ability(damage,s_index,ability)
+				}
+				
 				// Switch case on damage taken
 				switch(damage)
 				{
@@ -368,6 +701,17 @@ function get_coverage(types)
 		// Dereference the row
 		let row = map[x];
 		
+		// If Ability is Wonder Guard
+		if(ability == 'Wonder Guard')
+		{
+			// If the type isn't weak
+			if (!(row[4] || row[5]))
+			{
+				// Make the type immune
+				row[0] = 1;
+			}
+		}
+		
 		// If there are any immunities, zero out the rest of the fields
 		if (row[0] > 0)
 		{
@@ -377,7 +721,7 @@ function get_coverage(types)
 			// Zero out weak, resist, neutral
 			row[2] = row[3] = row[4] = 0;
 		}
-		// If there are two weaknesses, zero the weaknesses field and make it a 4x weakness
+		// If there are two resistances, zero the resistance field and make it a 4x resistance
 		else if (row[2] == 2)
 		{
 			// Set 4x resist to 1
@@ -387,13 +731,13 @@ function get_coverage(types)
 			row[2] = 0;
 		}
 		
-		// If there are two resistances, zero the resistance field and make it a 4x resistance
+		// If there are two weaknesses, zero the weakness field and make it a 4x weakness
 		else if (row[4] == 2)
 		{
-			// Set 4x resist to 1
+			// Set 4x weakness to 1
 			row[5] = 1;
 			
-			// Set 2x resist to 0
+			// Set 2x weakness to 0
 			row[4] = 0;
 		}
 		
@@ -423,24 +767,29 @@ function get_coverage(types)
 // function get_table_defensive(types: list): list[]
 // Given a list of types, returns the defensive values
 // Which should be inserted into the display table.
-function get_table_defensive(types)
+function get_table_defensive(types, abilities)
 {
 	// X Value: Number of different types
 	// Y Value: Number of columns (Excl. Type Logo)
 	let map = get_map(document.typeCount, 6);
 	
 	// Iterate over the list of types provided
-	for (combo of types)
+	// for (combo of types)
+	for(let i=0; i<types.length; i++)
 	{
+		// Dereference this indexes' type combo
+		let combo = types[i];
+		
+		// Dereference this indexes ability
+		let ability = abilities[i];
+		
 		// Generate the map 
-		let combo_map = get_coverage(combo);
+		let combo_map = get_coverage(combo,ability);
 		
 		// Add the two maps together
 		map = add_map(map,combo_map);
 	}
-	
-	console.log(map);
-	
+
 	// Return the generated map to the calling process
 	return map;
 }
@@ -448,11 +797,13 @@ function get_table_defensive(types)
 // function get_table_offensive(types: list): list[]
 // Given a list of types, returns the offensive values
 // Which should be inserted into the display table.
-function get_table_offensive(types)
+function get_table_offensive(moves, abilities)
 {
 	// X Value: Number of different types
 	// Y Value: Number of columns (Excl. Type Logo)
 	let map = get_map(document.typeCount, 7);
+	
+	
 	
 	// Return the generated map to the calling process
 	return map;
@@ -592,24 +943,96 @@ function update(id = null)
 	}
 	
 	// Array of all of the types
-	// which are on the team so far
+	// which are on the team
 	// (Duplicates allowed)
 	document.types_list = [];
+	
+	// Array of all of the abilities 
+	// which are on the team
+	// (Duplicates allowed)
+	document.abilities_list = [];
+	
+	// Array of all of the move types
+	// which are on the team
+	// (Duplicates allowed)
+	document.moves_list = [];
 	
 	// Iterate over all of the elements which start with 'game-timer-'
 	$("*[id*='pkmn-species-']").each(function(index, element){
 
+		// Dereference the ID Value of the Pokemon
+		let id = element.id.split('pkmn-species-')[1];
+
 		// Check to see if the value matches a Pokemon name
-		let lookup = name_lookup(element.value,document.pokedex);
+		let lookup_dex = name_lookup(element.value,document.pokedex);
 		
 		// If a non-null value is returned
-		if (lookup)
+		if (lookup_dex)
 		{
 			// Dereference the types
-			let types = lookup.types;
+			let types = lookup_dex.types;
 			
 			// Add the type combination to the list of types
 			document.types_list.push(types);
+			
+			// Dereference the ability
+			let ability = document.getElementById('pkmn-ability-' + id).value;
+			
+			// If an ability has been set
+			if (ability)
+			{
+				// Add the ability to the abilities list
+				document.abilities_list.push(ability);
+			}
+			else // Pokemon has no set ability
+			{
+				// Push a null element (just to pad the list)
+				document.abilities_list.push(null);
+			}
+			
+			// Empty list of moves
+			let moves = [];
+			
+			// Iterate over the pokemon's moves in the form
+			$("*[id*='pkmn-moves-" + id + "-']").each(function(mv_index,mv_element)
+			{
+				// Find the move in the moes list
+				let lookup_move = name_lookup(mv_element.value,document.moves);
+				
+				// If a non-null value is returned
+				if (lookup_move)
+				{
+					// Get the type of the move
+					let type = lookup_move.type;
+					
+					// Get the category of the move
+					let category = lookup_move.category;
+					
+					// If the category is either physical or special
+					// In other words, if the attack deals damage
+					if($.inArray(category,['Physical','Special']))
+					{
+						// Add the type of the move to the moves list
+						moves.push(type);
+					}
+					else // If the attack does not deal damage
+					{
+						// Push a null value to fill space
+						// Status moves do not count towards
+						// type coverage
+						moves.push(null);
+					}
+				}
+				else
+				{
+					// Push a null value to fill space
+					moves.push(null);
+				}
+			});
+		}
+		else
+		{
+			// Pokemon does not exist, no need to continue
 		}
 	});
 	
@@ -618,7 +1041,7 @@ function update(id = null)
 	if (document.active == 0)
 	{
 		// Generate the defensive coverage table
-		document.defense = get_table_defensive(document.types_list);
+		document.defense = get_table_defensive(document.types_list, document.abilities_list);
 		
 		// Populate the displayed table using the defensive data
 		populate_table(document.defense);
@@ -626,7 +1049,7 @@ function update(id = null)
 	else // We are looking at the offensive table
 	{
 		// Generate the offensive coverage table
-		document.offense = get_table_offensive(document.types_list);
+		document.offense = get_table_offensive(document.moves_list, document.abilities_list);
 		
 		// Populate the displayed table using the offensive data
 		populate_table(document.offense);
