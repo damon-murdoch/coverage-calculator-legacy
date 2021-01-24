@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	
+		<title>
+			Pokemon Type Coverage Calculator
+		</title>
+		
+		<!-- Bootstrap External CSS File -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	</head>
+	<body class=''>
+		<div id='head'>
+			<div id='title' class='text-center'>
+				<h1 class='display-4'>Pokemon Type Coverage Calculator</h1> 
+				<p class='text-muted lead'>Developed by <a href='https://twitter.com/SirScrubbington'>Damon Murdoch</a></p>
+				<p class='text-muted lead'>Based on the original by <a href='https://twitter.com/GabbySnyder'>Gabby Snyder</a></p>
+			</div>
+		</div>
+		<div id='body' class='container-fluid'>
+		
+			<div class='row'>
+			
+				<div id='table-pkmn-container' class='col-s'>
+					<table id='table-pkmn' class='table'>
+						<thead id='pkmn-control' class='thead-light'>
+							<tr>
+								<th scope='col' colspan=2>
+									<a href='#' onClick='add_pokemon()'>
+										Add New
+									</a>
+								</th>
+							</tr>
+						</thead>
+						<thead id='pkmn-header' class='thead-dark'>
+							<tr>
+								<th scope='col'>
+									Pokemon
+								</th>
+								<th scope='col'>
+								</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div id='table-coverage-container' class='col'>
+					<table id='table-coverage' class='table'>
+						<!-- Sets if offensive or defensive calcs should be shown -->
+						<thead id='table-selector' class='thead-light'>
+							<tr>
+								<th scope="col">
+									<a href='#' onClick=''>
+										Defensive
+									</a>
+								</th>
+								
+								<th scope="col">
+									<a href='#' onClick=''>
+										Offensive
+									</a>
+								</th>
+								
+								<!-- Filler Space -->
+								<th scope="col" colspan=6></th>
+							</tr>
+						</thead>
+						
+						<!-- Holds the table row titles -->
+						<thead id='table-header' class='thead-dark'>
+							<tr>
+								<th scope="col">Type</th>
+								<th scope="col">Immune</th>
+								<th scope="col">4x Resist</th>
+								<th scope="col">2x Resist</th>
+								<th scope="col">Neutral</th>
+								<th scope="col">2x Weak</th>
+								<th scope="col">4x Weak</th>
+								<th scope="col">Rating</th>
+							</tr>
+						</thead>
+						<!--
+							Rest are filled using JavaScript on load
+							Function: load_table(void): void
+						-->
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id='foot'>
+		</div>
+	</body>
+	<div id='javascript'>
+		
+		<!-- JQuery Source Code -->
+		<script type='text/javascript' src='js/jquery.min.js'>
+		</script>
+		
+		<!-- Bootstrap JavaScript Source Code -->
+		<script type='text/javascript' src='js/bootstrap.min.js'>
+		</script>
+		
+		<!-- AutoComplete Function JavaScript Code -->
+		<script type='text/javascript' src='js/autocomplete.min.js'>
+		</script>
+		
+		<!-- AutoComplete Search Function JavaScript Code -->
+		<script type='text/javascript' src='js/search.js'>
+		</script>
+		
+		<!-- Pokedex JavaScript Data Source File -->
+		<script type='text/javascript' src='data/pokedex.js'>
+		</script>
+		
+		<!-- Pokemon Types JavaScript Data Source File -->
+		<script type='text/javascript' src='data/types.js'>
+		</script>
+		
+		<!-- Pokemon Abilities JavaScript Data Source File -->
+		<script type='text/javascript' src='data/abilities.js'>
+		</script>
+		
+		<!-- Pokemon Moves JavaScript Data source File -->
+		<script type='text/javascript' src='data/moves.js'>
+		</script>
+		
+		<!-- Map 2D Array Math Library Source File -->
+		<script type='text/javascript' src='js/map.js'>
+		</script>
+		
+		<!-- Page JavaScript Source File -->
+		<script type='text/javascript' src='index.js'>
+		</script>
+		
+	</div>
+</html>
