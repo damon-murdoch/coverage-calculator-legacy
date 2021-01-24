@@ -49,7 +49,7 @@ function load_types()
 function add_pokemon()
 {
 	// Dereference the table object
-	let table = document.getElementById('table-pkmn');
+	let table = document.getElementById('table-pkmn-contents');
 	
 	// Dereference the pokemon_count object, 
 	// and increment it after assignment
@@ -79,10 +79,10 @@ function add_pokemon()
 	
 	// Set the move row content
 	move.innerHTML = "<td><div class=''>" + 
-		"<td><input id='pkmn-move1-" + id + "' class='form-control' type=text name='pkmn-move1-" + id + "' placeholder='Move 1' onChange='update(" + id + ")'>" +
-		"<input id='pkmn-move2-" + id + "' class='form-control' type=text name='pkmn-move2-" + id + "' placeholder='Move 2' onChange='update(" + id + ")'>" +
-		"<input id='pkmn-move3-" + id + "' class='form-control' type=text name='pkmn-move3-" + id + "' placeholder='Move 3' onChange='update(" + id + ")'>" +
-		"<input id='pkmn-move4-" + id + "' class='form-control' type=text name='pkmn-move4-" + id + "' placeholder='Move 4' onChange='update(" + id + ")'>" +
+		"<td><input id='pkmn-" + id + "-move-1' class='form-control' type=text name='pkmn-move1-" + id + "' placeholder='Move 1' onChange='update(" + id + ")'>" +
+		"<input id='pkmn-" + id + "-move-2' class='form-control' type=text name='pkmn-move2-" + id + "' placeholder='Move 2' onChange='update(" + id + ")'>" +
+		"<input id='pkmn-" + id + "-move-3' class='form-control' type=text name='pkmn-move3-" + id + "' placeholder='Move 3' onChange='update(" + id + ")'>" +
+		"<input id='pkmn-" + id + "-move-4' class='form-control' type=text name='pkmn-move4-" + id + "' placeholder='Move 4' onChange='update(" + id + ")'>" +
 		"</div></td>";
 	
 	// Add the move row to the form
@@ -108,12 +108,16 @@ function add_pokemon()
 	
 	// Add the autocomplete functions to the form
 	
+	// Autocomplete Code Reference
+	// https://www.jqueryscript.net/form/autocomplete-typeahead-bootstrap.html
+	
 	// Species Autocomplete
 	$('#pkmn-species-' + id).autocomplete({
 		nameProperty: 'name',
 		valueProperty: 'value',
 		dataSource: document.pokedex_lookup,
-		filterOn:'input'
+		filterOn:'input',
+		autoSelect: true
 	});
 	
 	// Ability Autocomplete
@@ -121,17 +125,19 @@ function add_pokemon()
 		nameProperty: 'name',
 		valueProperty: 'value',
 		dataSource: document.abilities_lookup,
-		filterOn:'input'
+		filterOn:'input',
+		autoSelect: true
 	});
 	
 	// Moves Autocomplete
 	for(let i=1; i <= 4; i++)
 	{
-		$('#pkmn-move' + i + '-' + id).autocomplete({
+		$('#pkmn-' + id + '-move-' + i).autocomplete({
 			nameProperty: 'name',
 			valueProperty: 'value',
 			dataSource: document.moves_lookup,
-			filterOn:'input'
+			filterOn:'input',
+			autoSelect: true
 		});
 	}
 }
@@ -236,15 +242,111 @@ function set_sprite(id)
 		// zeros until it is and convert it into
 		// a string
 		let num = pad(lookup.num,3,0);
-		
+
 		// Switch on the different formes
 		switch(lookup.forme)
 		{
-			// Gigantamax
-			case 'Gmax': num += 'Gi'; break;
+			// Ash Pikachu
+			case 'Ash': num += 'A'; break;
 			
-			// Therian
+			// Hoenn Pikachu
+			case 'Hoenn': num += 'H'; break;
+			
+			// Kanto Pikachu
+			case 'Kanto': num += 'K'; break;
+			
+			// Original Pikachu
+			case 'Original': num += 'O'; break;
+			
+			// Partner Pikachu
+			case 'Partner': num += 'P'; break;
+			
+			// Sinnoh Pikachu
+			case 'Sinnoh': num += 'S'; break;
+			
+			// Unova Pikachu
+			case 'Unova': num += 'U'; break;
+			
+			// World Pikachu
+			case 'World': num += 'W'; break;
+			
+			// Rotom Fan
+			case 'Fan': num += 'F'; break;
+			
+			// Rotom Mow
+			case 'Mow': num += 'L'; break;
+			
+			// Rotom Heat 
+			case 'Heat': num += 'O'; break;
+			
+			// Rotom Frost
+			case 'Frost': num += 'R'; break;
+			
+			// Rotom Wash
+			case 'Wash': num += 'W'; break;
+			
+			// Giratina Origin
+			case 'Origin': num += 'O'; break;
+			
+			// Therian Formes
 			case 'Therian': num += 'T'; break;
+			
+			// Kyurem Black
+			case 'Black': num += 'B'; break;
+			
+			// Kyurem White
+			case 'White': num += 'W'; break;
+			
+			// Keldeo Resolute
+			case 'Resolute': num += 'R'; break;
+			
+			// Genesect Douse
+			case 'Douse': num += 'B'; break;
+			
+			// Genesect Shock
+			case 'Shock': num += 'Y'; break;
+			
+			// Genesect Burn
+			case 'Burn': num += 'R'; break;
+			
+			// Genesect Chill
+			case 'Chill': num += 'W'; break;
+			
+			// Xerneas Neutral
+			case 'Neutral': num += 'N'; break;
+			
+			// Zygarde Complete
+			case 'Complete': num += 'C'; break;
+			
+			// Zygarde 10 Percent
+			case '10%': num += 'T'; break;
+			
+			// Alolan Formes
+			case 'Alola': num += 'A'; break;
+			
+			// Wishiwashi School
+			case 'School': num += 'Sc'; break;
+			
+			// Necrozma Dusk Mane
+			case 'Dusk-Mane': num += 'DM'; break;
+			
+			// Necrozma Dawn Wings
+			case 'Dawn-Wings': num += 'DW'; break;
+			
+			// Galarian Formes
+			case 'Galar': num += 'G'; break;
+			
+			// Galarian Zen Mode Darmanitan
+			case 'Galar-Zen': num += 'GZ'; break;
+			
+			// Crowned Zacian / Zamazenta
+			case 'Crowned': num += 'C'; break;
+			
+			// Gigantamax Formes
+			case 'Gmax': num += 'Gi'; break;	
+			
+			// Urshifu Rapid-Strike Gmax
+			case 'Rapid-Strike-Gmax': num += 'RGi'; break;
 		}
 		
 		// Generate the filename
@@ -604,6 +706,100 @@ function get_ability(damage,index,ability)
 	return damage;
 }
 
+// function get_move(move: object, ability: string)
+// Given a move and an ability, evaluates what type
+// the move will be when the user has the given
+// ability and returns it to the calling process.
+function get_move(move, ability = null)
+{
+	// Dereference the move type
+	let type = move.type;
+	
+	// Get the category of the move
+	let category = move.category;
+	
+	// If the move is a sound-based move, set sound to 1. Otherwise, set to 0
+	let sound = ('sound' in move.flags && move.flags['sound'] == 1) ? 1 : 0;
+	
+	// If the category is either physical or special
+	// In other words, if the attack deals damage
+	if($.inArray(category,['Physical','Special']) >= 0)
+	{
+		// If the ability is set
+		if(ability)
+		{
+			// Switching on ability rather than type
+			// simplifies the handling of Normalize.
+			switch(ability)
+			{
+				// Aerilate - Converts all normal attacks to flying
+				case 'Aerilate': 
+				
+					// If the attack is normal, change it to flying
+					// Otherwise, leave it alone
+					type = (type=='Normal') ? 'Flying' : type;
+				
+				break;
+				
+				// Pixilate - Converts all normal attacks to fairy
+				case 'Pixilate': 
+				
+					// If the attack is normal, change it to fairy
+					// Otherwise, leave it alone
+					type = (type=='Normal') ? 'Fairy' : type;
+				
+				break;
+				
+				// Galvanize - Converts all normal attacks to electric
+				case 'Galvanize': 
+				
+					// If the attack is normal, change it to electric
+					// Otherwise, leave it alone
+					type = (type=='Normal') ? 'Electric' : type;
+				
+				break;
+				
+				// Refridgerate - Converts all normal attacks to ice
+				case 'Refridgerate': 
+				
+					// If the attack is normal, change it to ice
+					// Otherwise, leave it alone
+					type = (type=='Normal') ? 'Ice' : type;
+				
+				break;
+				
+				// Liquid Voice - Converts all sound attacks to water
+				case 'Liquid Voice':
+				
+					// If the attack is sound based, change it to water
+					// Otherwise, leave it alone
+					type = (sound==1) ? 'Water' : type;
+				
+				break;
+				
+				// Normalize - Converts all attacks to normal
+				case 'Normalize':
+				
+					// Make the attack normal type
+					type = 'Normal';
+				
+				break;
+			}
+		}
+	}
+	else // If the attack does not deal damage
+	{
+		// Push a null value to fill space
+		// Status moves do not count towards
+		// type coverage
+		
+		type = null;
+	}
+
+	// Return the type of the move to the calling process
+	return type;
+}
+
 // function get_coverage(types: list): object
 // Given a list object containing two or less types,
 // calculates the weaknesses and resistances of the 
@@ -614,7 +810,6 @@ function get_coverage(types, ability = null)
 	// Generate a map for the combo coverage
 	
 	// Rows 0-6 are used
-	// Row 7 is there for padding
 	
 	let map = get_map(document.typeCount,6);
 	
@@ -764,6 +959,77 @@ function get_coverage(types, ability = null)
 	return map;
 }
 
+// function get_damage(moves: list, ability: string): map
+function get_damage(moves,ability)
+{
+	// Generate a map for the combo coverage
+	
+	// Rows 0,2,4 are used
+	// Rows 1,3 are there for padding
+
+	let map = get_map(document.typeCount,6);
+	
+	// Iterate over the moves in the moves list
+	for(let move of moves)
+	{
+		// If the move has been set
+		if (move)
+		{
+			// Iterate over each type
+			for(let type_name in document.types)
+			{
+				// Dereference the type id
+				let type_id = document.typeMap[type_name];
+				
+				// Dereference the type info
+				let type = document.types[type_name];
+				
+				// Switch on damage taken from the current move for the given type
+				switch(type.damageTaken[move])
+				{
+					// Normal
+					case 0:
+					
+						// Increment the neutral hits variable
+						map[type_id][3]++;
+					
+					break;
+					
+					// Weak
+					case 1:
+					
+						// Increment the weakness hits variable
+						map[type_id][4]++;
+					
+					break;
+					
+					// Resist
+					case 2:
+					
+						// Increment the resisted hits variable
+						map[type_id][2]++;
+					
+					break;
+					
+					// Immune
+					case 3: 
+					
+						// Increment the immune hits variable
+						map[type_id][0]++;
+					
+					break;
+				}
+			}
+		}
+		else // Move is null
+		{
+			// Do nothing
+		}
+	}
+	
+	return map;
+}
+
 // function get_table_defensive(types: list): list[]
 // Given a list of types, returns the defensive values
 // Which should be inserted into the display table.
@@ -794,6 +1060,24 @@ function get_table_defensive(types, abilities)
 	return map;
 }
 
+// function set_table_defensive(void): void
+// Called by the web page form to load the defensive
+// table.
+function set_table_defensive()
+{
+	// Set the document active variable to 0 (defensive)
+	document.active = 0;
+	
+	// Darken the defensive tab, to show that it is active
+	document.getElementById('option-defensive').className = 'bg-light';
+	
+	// Lighten the offensive tab, to show that it is hidden
+	document.getElementById('option-offensive').className = '';
+	
+	// Update the form
+	update();
+}
+
 // function get_table_offensive(types: list): list[]
 // Given a list of types, returns the offensive values
 // Which should be inserted into the display table.
@@ -801,12 +1085,43 @@ function get_table_offensive(moves, abilities)
 {
 	// X Value: Number of different types
 	// Y Value: Number of columns (Excl. Type Logo)
-	let map = get_map(document.typeCount, 7);
+	let map = get_map(document.typeCount, 6);
 	
-	
+	for(let i=0; i<moves.length; i++)
+	{
+		// Dereference the indexes' moves
+		let moveset = moves[i];
+		
+		// Dereference this indexes ability
+		let ability = abilities[i];
+		
+		// Generate the map
+		let damage_map = get_damage(moveset,ability);
+		
+		// Add the two maps together
+		map = add_map(map,damage_map);
+	}
 	
 	// Return the generated map to the calling process
 	return map;
+}
+
+// function set_table_defensive(void): void
+// Called by the web page form to load the defensive
+// table.
+function set_table_offensive()
+{
+	// Set the document active variable to 0 (defensive)
+	document.active = 1;
+	
+	// Lighten the defensive tab, to show that it is hidden
+	document.getElementById('option-defensive').className = '';
+	
+	// Darken the offensive tab, to show that it is active
+	document.getElementById('option-offensive').className = 'bg-light';
+	
+	// Update the form
+	update();
 }
 
 function evaluate_row(row)
@@ -850,7 +1165,7 @@ function populate_table(map)
 		}
 		
 		// Get a mathematical rating of the row
-		let rating = evaluate_row(map[i]);
+		let rating = document.active == 0 ? evaluate_row(map[i]) : -evaluate_row(map[i]);
 		
 		// Dereference the row we are looking at
 		let elem_row = document.getElementById('row-' + i);
@@ -894,7 +1209,7 @@ function populate_table(map)
 		{
 			// Very poor coverage
 			elem_rating.innerHTML = 'Very Poor';
-			
+			https://getbootstrap.com/docs/4.0/utilities/text/
 			// Row background dark red
 			elem_row.style["background-color"] = '#ffcccc';
 		}
@@ -919,6 +1234,14 @@ function populate_table(map)
 			elem_row.style["background-color"] = '#ffffff';
 		}
 	}
+}
+
+// import_showdown(): void
+// Imports the pokemon from the user's 
+// clipboard to the form
+function import_from_clipboard()
+{
+	// Not implemented yet
 }
 
 // update(id: int): void
@@ -957,7 +1280,9 @@ function update(id = null)
 	// (Duplicates allowed)
 	document.moves_list = [];
 	
-	// Iterate over all of the elements which start with 'game-timer-'
+	document.paste_export = [];
+	
+	// Iterate over all of the elements which start with 'pkmn-species-'
 	$("*[id*='pkmn-species-']").each(function(index, element){
 
 		// Dereference the ID Value of the Pokemon
@@ -969,6 +1294,11 @@ function update(id = null)
 		// If a non-null value is returned
 		if (lookup_dex)
 		{
+			// Update the content for the export link
+			
+			// Start with just the name of the Pokemon and a new line
+			let content = element.value + "\n";
+			
 			// Dereference the types
 			let types = lookup_dex.types;
 			
@@ -983,6 +1313,9 @@ function update(id = null)
 			{
 				// Add the ability to the abilities list
 				document.abilities_list.push(ability);
+				
+				// Add the name of the ability to the export content
+				content += "Ability: " + ability + "\n";
 			}
 			else // Pokemon has no set ability
 			{
@@ -994,7 +1327,7 @@ function update(id = null)
 			let moves = [];
 			
 			// Iterate over the pokemon's moves in the form
-			$("*[id*='pkmn-moves-" + id + "-']").each(function(mv_index,mv_element)
+			$("*[id*='pkmn-" + id + "-move-']").each(function(mv_index,mv_element)
 			{
 				// Find the move in the moes list
 				let lookup_move = name_lookup(mv_element.value,document.moves);
@@ -1002,26 +1335,26 @@ function update(id = null)
 				// If a non-null value is returned
 				if (lookup_move)
 				{
-					// Get the type of the move
-					let type = lookup_move.type;
-					
-					// Get the category of the move
-					let category = lookup_move.category;
-					
-					// If the category is either physical or special
-					// In other words, if the attack deals damage
-					if($.inArray(category,['Physical','Special']))
+					// Evaluate the type
+					let type = get_move(lookup_move,ability);
+
+					// If the type returned is a valid type (and not null)
+					if ($.inArray(type,Object.keys(document.types)) >= 0)
 					{
-						// Add the type of the move to the moves list
-						moves.push(type);
+						// Set the background to the colour specified for the type
+						mv_element.style["background-color"] = document.typeColours[type];
 					}
-					else // If the attack does not deal damage
+					else // Does not match a valid type (or is null)
 					{
-						// Push a null value to fill space
-						// Status moves do not count towards
-						// type coverage
-						moves.push(null);
+						// Set the background to standard white
+						mv_element.style["background-color"] = '#ffffff';
 					}
+
+					// Add the move type to the moves list
+					moves.push(type);
+					
+					// Add the move to the export content
+					content += "- " + mv_element.value + "\n";
 				}
 				else
 				{
@@ -1029,6 +1362,12 @@ function update(id = null)
 					moves.push(null);
 				}
 			});
+			
+			// Add the set's list of moves to the document moves list
+			document.moves_list.push(moves);
+			
+			// Add the pokemon's paste content to the export variable
+			document.paste_export.push(content);
 		}
 		else
 		{
@@ -1093,6 +1432,29 @@ $(document).ready(function(){
 	// Reference of the number of types in the game
 	document.typeCount = Object.keys(document.types).length;
 	
+	// Reference for the colour which should be displayed
+	// in the background of moves of a given type
+	document.typeColours = {
+		'Bug': '#f3f7d4',
+		'Dark': '#ece3df',
+		'Dragon': '#444466',
+		'Electric': '#e0e0eb',
+		'Fairy': '#ffe6ff',
+		'Fighting': '#f1ddda',
+		'Fire': '#ffe9e6',
+		'Flying': '#e6eeff',
+		'Ghost': '#dcdcef',
+		'Grass': '#e0f3d8',
+		'Ground': '#fbf7ea',
+		'Ice': '#e6f9ff',
+		'Normal': '#f3f1f1', 
+		'Poison': '#f6eef5',
+		'Psychic': '#ffe6f0',
+		'Rock': '#f7f5ed',
+		'Steel': '#f1f1f4',
+		'Water': '#e6f2ff'
+	}
+	
 	// Reference of the table index associated with each type
 	document.typeMap = kv_map(document.types);
 
@@ -1117,4 +1479,41 @@ $(document).ready(function(){
 	
 	// Add a default pokemon object to the form
 	add_pokemon();
+	
+	// Set the active table to the defenses table
+	set_table_defensive();
+	
+	// --- Add Event Listeners --- //
+	
+	// Export to clipboard event listener
+	document.getElementById('paste-export').addEventListener('click', async event => {
+		
+		// If the clipboard module exists in the client's browser
+		if(navigator.clipboard)
+		{
+			// Export string which will be copied to the clipboard
+			let content = document.paste_export.join("\n");
+			
+			try
+			{
+				// Copy the string to the clipboard
+				await navigator.clipboard.writeText(content);
+				
+				console.log('Content "' + content + '" copied to clipboard!');
+				
+				// Successful copy alert
+				window.alert(document.paste_export.length + ' Pokemon copied to clipboard successfully.');
+			}
+			catch (err)
+			{
+				// Report the failure to the error console
+				console.error('Failed to copy content "' + content + '"! Reason: "' + err + '"');
+			}
+		}
+		else // Clipboard module is not available
+		{
+			// Report failure to console, continue
+			console.error('Clipboard interaction not supported by browser.');
+		}
+	});
 });

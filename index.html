@@ -24,13 +24,23 @@
 			<div class='row'>
 			
 				<div id='table-pkmn-container' class='col-s'>
-					<table id='table-pkmn' class='table'>
+					<table id='table-pkmn' class='table' style='overflow: hidden'>
 						<thead id='pkmn-control' class='thead-light'>
 							<tr>
-								<th scope='col' colspan=2>
+								<th scope='col'>
 									<a href='#' onClick='add_pokemon()'>
 										Add New
 									</a>
+								</th>
+								<th scope='col'>
+									<a id='paste-export' href='#'>
+										Export to Showdown
+									</a>
+									<!-- Will add import functionality here
+									<a id='paste-import' href='#'>
+										Import from Showdown
+									</a>
+									-->							
 								</th>
 							</tr>
 						</thead>
@@ -43,6 +53,8 @@
 								</th>
 							</tr>
 						</thead>
+						<table id='table-pkmn-contents' class='table' style='overflow-y: scroll'>
+						</table>
 					</table>
 				</div>
 				<div id='table-coverage-container' class='col'>
@@ -50,14 +62,14 @@
 						<!-- Sets if offensive or defensive calcs should be shown -->
 						<thead id='table-selector' class='thead-light'>
 							<tr>
-								<th scope="col">
-									<a href='#' onClick=''>
+								<th id='option-defensive' class='' scope="col">
+									<a href='#' onClick='set_table_defensive()'>
 										Defensive
 									</a>
 								</th>
 								
-								<th scope="col">
-									<a href='#' onClick=''>
+								<th id='option-offensive' class='' scope="col">
+									<a href='#' onClick='set_table_offensive()'>
 										Offensive
 									</a>
 								</th>
