@@ -28,7 +28,7 @@ Please feel free to make suggestions or improvements.
 
 ### Problems
 If you encounter any issues with this project, please feel free to open an issue 
-[here](https://github.com/damon-murdoch/powershell-profile/issues) or send me a 
+[here](https://github.com/damon-murdoch/coverage-calculator/issues) or send me a 
 message on twitter detailing the issue and how it can be replicated.
 
 ## Sponsor this Project
