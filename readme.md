@@ -24,6 +24,7 @@ A list of future planned fixes / improvements are listed below.
 | Change Description                                                        | Priority |
 | ------------------------------------------------------------------------- | -------- |
 | Fix a big which makes dragon-type moves difficult to read                 | High     |
+| Add an 'import from showdown' button (parser already implemented)         | High     |
 | Allow the user to sort the table on each field, e.g. Number of weaknesses | Low      |
 
 ### Problems / Improvements
