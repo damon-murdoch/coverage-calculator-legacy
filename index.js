@@ -44,9 +44,44 @@ function load_types()
 	}
 }
 
+// import_pokemon(set: object, id: int): void
+// Imports a given set object 'set' 
+// to the form object at index 'id'
+function import_pokemon(set, id)
+{
+	// Set the species of the set to the species
+	document.getElementById('pkmn-species-' + id)
+		.value = set.species;
+	
+	// Set the ability of the set to the ability
+	document.getElementById('pkmn-ability-' + id)
+		.value = set.ability;
+
+	// Loop over the moves
+	for (i in set.moves)
+	{
+		// Dereference the current move
+		let move = set.moves[i];
+
+		// Generate the row id (for console)
+		let row_id = 'pkmn-' + id + '-move-' + (parseInt(i) + 1);
+
+		console.log(row_id);
+
+		// If we have exceeded the move limit, stop
+		if (i >= 3) break;
+
+		// Set the current move to the move from the imported set
+		document.getElementById(row_id).value = set.moves[i];
+	}
+
+	// Verify the displayed sprite
+	set_sprite(id);
+}
+
 // add_pokemon(void): void
 // Adds a new pokemon selection tab to the window
-function add_pokemon()
+function add_pokemon(set = null)
 {
 	// Dereference the table object
 	let table = document.getElementById('table-pkmn-contents');
@@ -140,6 +175,14 @@ function add_pokemon()
 			autoSelect: true
 		});
 	}
+
+	// If a pokemon set  is 
+	// provided in the arguments
+	if (set)
+	{
+		// Import it into the row
+		import_pokemon(set, id);
+	}
 }
 
 // rmv_pokemon(id: int): void
@@ -209,9 +252,8 @@ function toggle_moves(id)
 // successfully.
 function verify_sprite(img)
 {
-    // However, they do have two very useful properties: naturalWidth and
-    // naturalHeight. These give the true size of the image. If it failed
-    // to load, either of these should be zero.
+		// If image failed to load, 
+		// naturalWidth will be zero.
     if (img.naturalWidth === 0) {
         return false;
     }
@@ -1236,14 +1278,6 @@ function populate_table(map)
 	}
 }
 
-// import_showdown(): void
-// Imports the pokemon from the user's 
-// clipboard to the form
-function import_from_clipboard()
-{
-	// Not implemented yet
-}
-
 // update(id: int): void
 // Given a pokemon id (which can be null),
 // refreshes the calculations in the spreadsheet
@@ -1395,6 +1429,30 @@ function update(id = null)
 	}
 }
 
+// import_showdown(): void
+// Imports the pokemon from the user's 
+// clipboard to the form
+function import_showdown()
+{
+	// Get the text from the textarea
+	let content = document.getElementById('text-import').value;
+
+	// Parse the sets from the import
+	let sets = parseSets(content);
+
+	console.log(sets);
+	
+	// Loop over the sets
+	for (set of sets)
+	{
+		// Add the set to the page
+		add_pokemon(set);
+	}
+
+	// Remove the import form
+	document.getElementById('table-pkmn-import').innerHTML = "";
+}
+
 // Code that runs once the page has loaded
 $(document).ready(function(){
 	
@@ -1437,7 +1495,7 @@ $(document).ready(function(){
 	document.typeColours = {
 		'Bug': '#f3f7d4',
 		'Dark': '#ece3df',
-		'Dragon': '#444466',
+		'Dragon': '#b3b3cc',
 		'Electric': '#e0e0eb',
 		'Fairy': '#ffe6ff',
 		'Fighting': '#f1ddda',
@@ -1515,5 +1573,23 @@ $(document).ready(function(){
 			// Report failure to console, continue
 			console.error('Clipboard interaction not supported by browser.');
 		}
+	});
+
+	// Import from clipboard event listener
+	document.getElementById('paste-import').addEventListener('click', async event => {
+		document.getElementById('table-pkmn-import').innerHTML = `
+		<tr>
+			<td>
+				<textarea id='text-import' class='form-control' placeholder='Paste your team here...'></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button id='btn-import' type='button' class='btn btn-primary' onClick='import_showdown()'>
+					Submit
+				</button>
+			</td>
+		</tr>
+		`;
 	});
 });

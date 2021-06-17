@@ -33,14 +33,12 @@
 									</a>
 								</th>
 								<th scope='col'>
-									<a id='paste-export' href='#'>
-										Export to Showdown
-									</a>
-									<!-- Will add import functionality here
 									<a id='paste-import' href='#'>
-										Import from Showdown
-									</a>
-									-->							
+										Import from PS!
+									</a>	
+									<a id='paste-export' href='#'>
+										Export to PS!
+									</a>					
 								</th>
 							</tr>
 						</thead>
@@ -53,6 +51,8 @@
 								</th>
 							</tr>
 						</thead>
+						<table id='table-pkmn-import' class='table' style='overflow-y: scroll'>
+						</table>
 						<table id='table-pkmn-contents' class='table' style='overflow-y: scroll'>
 						</table>
 					</table>
@@ -111,6 +111,10 @@
 		
 		<!-- Bootstrap JavaScript Source Code -->
 		<script type='text/javascript' src='js/bootstrap.min.js'>
+		</script>
+
+		<!-- Pokemon Showdown! Parser Source Code -->
+		<script type='text/javascript' src='js/parser.js'>
 		</script>
 		
 		<!-- AutoComplete Function JavaScript Code -->
