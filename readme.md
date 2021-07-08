@@ -28,7 +28,7 @@ A list of future planned fixes / improvements are listed below.
 | Allow the user to sort the table on each field, e.g. Number of weaknesses | Low      |
 
 ### Problems / Improvements
-If you have any suggested improvements for this project or you encounter any issues, please feel free to open an issue [here](https://github.com/damon-murdoch/coverage-calculator/issues) or send me a message on twitter detailing the issue and how it can be replicated.
+If you have any suggested improvements for this project or you encounter any issues, please feel free to open an issue [here](../../issues) or send me a message on twitter detailing the issue and how it can be replicated.
 
 ## Sponsor this Project
 If you'd like to support this project and other future projects, 
